@@ -1,1 +1,1 @@
-# This is for my react ticket system appliaction.
+# This is for my react ticket system application.
