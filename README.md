@@ -1,4 +1,4 @@
-# This is for my react ticket system application.
+# This is the frontend for my ticket system application.
 
 
 My dependencies ,
