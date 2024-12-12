@@ -1,35 +1,86 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import CustomerComponent from "./components/CustomerComponent";
+import FooterComponent from "./components/FooterComponent";
+import HeaderComponent from "./components/HeaderComponent";
+import ListCustomerComponents from "./components/TablePages/ListCustomerTable";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ListVendorComponents from "./components/TablePages/ListVendorTable";
+import VendorComponent from "./components/VendorComponent";
+import Login from "./components/Login";
+import HomePage from "./components/HomePage";
+import EventDetails from "./components/EventDetails";
+import EventTable from "./components/TablePages/EventTable";
+import AddEvent from "./components/AddEvents";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div
+        style={{
+          // backgroundImage:`url(${image})`,
+          // height: "100vh",
+          backgroundColor: "#006144",
+          backgroundSize: "cover",
+          backgroundRepeat: "repeat",
+          minHeight: "100vh", 
+          padding: "20px"
+        }}
+      >
+        <BrowserRouter>
+          <HeaderComponent />
+          <Routes>
+            {/* http://localhost:5173*/}
+            <Route path="/" element={<Login />}></Route>
+
+            {/* http://localhost:5173/customers*/}
+            <Route
+              path="/customers"
+              element={<ListCustomerComponents />}
+            ></Route>
+
+            {/* http://localhost:5173/add-customer*/}
+            <Route path="/add-customer" element={<CustomerComponent />}></Route>
+
+            {/* http://localhost:5173/edit-customer/1*/}
+            <Route
+              path="/edit-customer/:id"
+              element={<CustomerComponent />}
+            ></Route>
+
+            {/* http://localhost:5173/vendors*/}
+            <Route path="/vendors" element={<ListVendorComponents />}></Route>
+
+            {/* http://localhost:5173/add-vendors*/}
+            <Route path="/add-vendor" element={<VendorComponent />}></Route>
+
+            {/* http://localhost:5173/edit-vendors/1*/}
+            <Route
+              path="/edit-vendor/:id"
+              element={<VendorComponent />}
+            ></Route>
+
+            {/* http://localhost:5173/home*/}
+            <Route path="/home" element={<HomePage />}></Route>
+
+            {/* http://localhost:5173/viewEvents*/}
+            <Route path="/viewEvents" element={<AddEvent />}></Route>
+
+            {/* http://localhost:5173/events/1*/}
+            <Route path="/events/:id" element={<EventDetails />}></Route>
+
+            {/* http://localhost:5173/events*/}
+            <Route path="/events" element={<EventTable />}></Route>
+
+            {/* http://localhost:5173/events*/}
+            <Route path="/events" element={<EventTable />}></Route>
+
+          </Routes>
+
+          <FooterComponent />
+        </BrowserRouter>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
