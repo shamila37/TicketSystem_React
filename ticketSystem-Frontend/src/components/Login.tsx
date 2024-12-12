@@ -33,6 +33,7 @@ const Login = () => {
             password: formData.password,
           });
           alert("Customer Sign-Up Successful!");
+          localStorage.setItem("firstName", formData.firstName);
           localStorage.setItem("userType", "customer");
           navigate("/home");
         } else if (formData.userType === "vendor") {
@@ -43,6 +44,7 @@ const Login = () => {
             password: formData.password,
           });
           alert("Vendor Sign-Up Successful!");
+          localStorage.setItem("firstName", formData.firstName);
           localStorage.setItem("userType", "vendor");
           navigate("/viewEvents");
         }
@@ -60,6 +62,7 @@ const Login = () => {
 
         console.log(`${formData.userType} Login Response:`, loginResponse.data);
         alert(`${formData.userType} Login Successful!`);
+        localStorage.setItem("firstName", formData.firstName);
         localStorage.setItem("userType", formData.userType);
         navigate(
           formData.userType === "customer" ? "/home" : "/viewEvents"
