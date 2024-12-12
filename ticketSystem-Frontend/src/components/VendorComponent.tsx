@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { createCustomer, getCustomer, updateCustomer } from "../services/CustomerService";
+import { createVendor, getVendor, updateVendor } from "../services/VendorService";
 import { useNavigate, useParams } from "react-router-dom";
 
-const CustomerComponent = () => {
+const VendorComponent = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,7 +15,7 @@ const CustomerComponent = () => {
   useEffect(() => {
 
     if(id){
-      getCustomer(id).then((response) => {
+      getVendor(id).then((response) => {
         setFirstName(response.data.firstName);
         setLastName(response.data.lastName);
         setEmail(response.data.email);
@@ -26,25 +26,13 @@ const CustomerComponent = () => {
 
   }, [id]);
 
-  //   function handleFirstName(e: { target: { value: SetStateAction<string> } }) {
-  //     setFirstName(e.target.value);
-  //   }
-
-  //   function handleLastName(e: { target: { value: SetStateAction<string> } }) {
-  //     setLastName(e.target.value);
-  //   }
-
-  //   function handleEmail(e: { target: { value: SetStateAction<string> } }) {
-  //     setEmail(e.target.value);
-  //   }
-
-  function saveOrUpdateCustomer(e: { preventDefault: () => void }) {
+  function saveOrUpdateVendor(e: { preventDefault: () => void }) {
     e.preventDefault();
 
     setErrorMessage('');
 
-    const customer = { firstName, lastName, email };
-    console.log(customer);
+    const vendor = { firstName, lastName, email };
+    console.log(vendor);
 
     if (!firstName || !lastName || !email) {
       setErrorMessage('All fields are required!');
@@ -52,16 +40,16 @@ const CustomerComponent = () => {
     }
 
     if(id){
-      updateCustomer(id, customer).then((response) => {
+      updateVendor(id, vendor).then((response) => {
         console.log(response.data);
-        navigator('/customers')
+        navigator('/vendors')
       }).catch(error => {
         console.error(error);
       })
     } else {
-      createCustomer(customer).then((response) => {
+      createVendor(vendor).then((response) => {
         console.log(response.data);
-        navigator('/customers');
+        navigator('/vendors');
       }).catch(error => {
         console.error(error);
       })
@@ -71,9 +59,9 @@ const CustomerComponent = () => {
 
   function pageTitle(){
     if(id){
-      return <h2 className="text-center">Update Customer</h2>
+      return <h2 className="text-center">Update Vendor</h2>
     }else{
-      return <h2 className="text-center">Add Customer</h2>
+      return <h2 className="text-center">Add Vendor</h2>
     }
   }
 
@@ -87,12 +75,12 @@ const CustomerComponent = () => {
             pageTitle()
           }
           <div className="card-body">
-            <form onSubmit={saveOrUpdateCustomer}>
+            <form onSubmit={saveOrUpdateVendor}>
               <div className="form-group mb-2">
                 <label className="form-lable">First Name:</label>
                 <input
                   type="text"
-                  placeholder="Enter customer first name"
+                  placeholder="Enter vendor first name"
                   name="firstName"
                   value={firstName}
                   className="form-control"
@@ -105,7 +93,7 @@ const CustomerComponent = () => {
                 <label className="form-lable">Last Name:</label>
                 <input
                   type="text"
-                  placeholder="Enter customer last name"
+                  placeholder="Enter vendor last name"
                   name="lastName"
                   value={lastName}
                   className="form-control"
@@ -118,7 +106,7 @@ const CustomerComponent = () => {
                 <label className="form-lable">Email:</label>
                 <input
                   type="text"
-                  placeholder="Enter customer email"
+                  placeholder="Enter vendor email"
                   name="email"
                   value={email}
                   className="form-control"
@@ -147,4 +135,4 @@ const CustomerComponent = () => {
   );
 };
 
-export default CustomerComponent;
+export default VendorComponent

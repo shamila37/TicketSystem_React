@@ -1,9 +1,9 @@
 .footer {
-    position: fixed;
+    /* position: fixed; */
     bottom: 0;
     width: 100%;
     height: 55px;
-    background-color: #2e4404;
+    background-color: #052708;
     text-align: center;
     color: white;
 }
@@ -13,13 +13,52 @@
 }
 
 .navbar {
-    background-color: #38c45b;
+    background-color: #00ABE4;
     font-weight: bold;
     width: 100%;
     height: 70px;
 }
 
 .container {
-    margin-top: 50px;
+    margin-top: 60px;
     margin-bottom: 100px;
+}
+
+.table {
+    border: 3px solid;
+}
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.event-card {
+  background-color: #0c0c0c;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.event-card img {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+}
+
+.event-details {
+  padding: 10px;
+}
+
+.event-details h3 {
+  margin: 0 0 5px;
+  font-size: 16px;
+  color: #c4bdbd;
+}
+
+.event-details p {
+  margin: 0;
+  font-size: 14px;
+  color: #ffffff;
 }
